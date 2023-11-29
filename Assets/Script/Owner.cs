@@ -16,10 +16,11 @@ public class Owner : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player != null) // Check if the player object is valid
-        {
+       
             Vector3 lookDirection = (player.transform.position - transform.position).normalized;
             ownerRb.velocity = lookDirection * speed;
-        }
+
+            
+        
     }
 }
