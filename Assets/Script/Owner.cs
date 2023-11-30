@@ -11,7 +11,7 @@ public class Owner : MonoBehaviour
     void Start()
     {
         ownerRb = GetComponent<Rigidbody>();
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.Find("Fred");
     }
 
     void FixedUpdate()
@@ -20,7 +20,5 @@ public class Owner : MonoBehaviour
             Vector3 lookDirection = (player.transform.position - transform.position).normalized;
             ownerRb.velocity = lookDirection * speed;
 
-            
-        
     }
 }

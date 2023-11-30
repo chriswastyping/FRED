@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject mousePrefab;
     private float spawnRange = 100.0f;
+    private float spawnHeight = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class SpawnManager : MonoBehaviour
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
         float spawnPosZ = Random.Range(-spawnRange, spawnRange);
 
-        Vector3 randomPos = new Vector3(spawnPosX, 0, spawnPosZ);
+        Vector3 randomPos = new Vector3(spawnPosX, spawnHeight, spawnPosZ);
 
         return randomPos;
     }
