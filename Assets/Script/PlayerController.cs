@@ -40,9 +40,15 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
     public float jumpHeight = 3f;
 
-    // Start is called before the first frame update
-   
-  
+    // Calling Pause() method from PauseMenu Script
+    PauseMenu pauseMenuScript;
+
+    private void Start()
+    {
+        // So we can access the methods in PauseMenu
+        pauseMenuScript = GameObject.FindGameObjectWithTag("Pause Menu").GetComponent<PauseMenu>();
+    }
+
     // Update is called once per framef
     void Update()
     {
@@ -97,13 +103,18 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Owner"))
         {
-            // Causes an error, will need to fix later   
+            
             if(gameObject != null) 
             {
-                Destroy(gameObject); 
+                Destroy(gameObject);
+                // Calling Pause() method to run when player dies!!!
+                pauseMenuScript.Pause();
+
             }
             gameOver = true;
             Debug.Log("Game Over");
+
+            
            
         }
     }
