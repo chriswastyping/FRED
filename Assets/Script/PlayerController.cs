@@ -41,13 +41,8 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 3f;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        // MouseInput
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
+   
+  
     // Update is called once per framef
     void Update()
     {
@@ -113,5 +108,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+ 
 }

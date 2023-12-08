@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Mouse
   - Owner
+  - Pause Menu
   layers:
   - Default
   - TransparentFX
