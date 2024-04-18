@@ -14,12 +14,11 @@ public class PlayerController : MonoBehaviour
 
     public Transform cam;
     
-    public float speed = 5.0f;
+    public float speed = 10.0f;
 
     public float turnSmoothTime = 0.1f;
     
     float turnSmoothVelocity;
- 
 
     // Mouse reference
 
@@ -42,6 +41,10 @@ public class PlayerController : MonoBehaviour
 
     // Calling Pause() method from PauseMenu Script
     PauseMenu pauseMenuScript;
+
+    // Audio
+    public AudioSource source;
+    public AudioClip clip;
 
     private void Start()
     {
@@ -100,6 +103,9 @@ public class PlayerController : MonoBehaviour
         { 
             hasMouse = true;
             Destroy(other.gameObject);
+            source.PlayOneShot(clip);
+            StartCoroutine(SpeedBoost());
+             
         }
         else if (other.CompareTag("Owner"))
         {
@@ -119,5 +125,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    IEnumerator SpeedBoost()
+    {
+        speed = 15f;
+        yield return new WaitForSeconds(5);
+        speed = 10f;
+    }
  
 }
