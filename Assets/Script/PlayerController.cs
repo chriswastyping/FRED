@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
     // Power Up
     public GameObject energy;
+    public GameObject trail;
+    public bool power = false;
 
 
     private void Start()
@@ -69,6 +71,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per framef
     void Update()
     {
+        if (scoreCount == 20)
+        {
+              gameOver = true;
+        }
+
         UpdateScore();
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayerMask);
 
@@ -145,9 +152,15 @@ public class PlayerController : MonoBehaviour
     {
         speed = 25f;
         energy.SetActive(true);
-        yield return new WaitForSeconds(10);
-        speed = 10f;
-        energy.SetActive(false);
+        trail.SetActive(true);
+
+        yield return new WaitForSeconds(60);
+
+       speed = 10f;
+       energy.SetActive(false);
+      trail.SetActive(false);
+
+        yield return null;
 
     }
 
