@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -46,15 +47,26 @@ public class PlayerController : MonoBehaviour
     public AudioSource source;
     public AudioClip clip;
 
+    // Score
+
+    private int scoreCount;
+
+    public TextMeshProUGUI scoreText;
+
+
     private void Start()
     {
         // So we can access the methods in PauseMenu
         pauseMenuScript = GameObject.FindGameObjectWithTag("Pause Menu").GetComponent<PauseMenu>();
+
+        // Score
+        scoreCount = 0;
     }
 
     // Update is called once per framef
     void Update()
     {
+        UpdateScore();
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayerMask);
 
         if (isGrounded && velocity.y < 0) 
@@ -105,6 +117,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             source.PlayOneShot(clip);
             StartCoroutine(SpeedBoost());
+            scoreCount++;
              
         }
         else if (other.CompareTag("Owner"))
@@ -131,5 +144,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(5);
         speed = 10f;
     }
- 
+
+    private void UpdateScore()
+    {
+
+        scoreText.text = "Score: " + scoreCount;
+    }
 }
+
