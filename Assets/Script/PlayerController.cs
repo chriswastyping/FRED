@@ -53,6 +53,9 @@ public class PlayerController : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    // Power Up
+    public GameObject energy;
+
 
     private void Start()
     {
@@ -140,15 +143,18 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SpeedBoost()
     {
-        speed = 15f;
-        yield return new WaitForSeconds(5);
+        speed = 25f;
+        energy.SetActive(true);
+        yield return new WaitForSeconds(10);
         speed = 10f;
+        energy.SetActive(false);
+
     }
 
     private void UpdateScore()
     {
 
-        scoreText.text = "Score: " + scoreCount;
+        scoreText.text = "Score: " + scoreCount + "/20";
     }
 }
 
